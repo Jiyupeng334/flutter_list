@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'interact_android.dart';
+import 'switchbutton.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Interact(),
+      home: SwitchButton(),
     );
   }
 }

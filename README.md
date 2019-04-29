@@ -1,16 +1,4 @@
-# flutter_list
+#主要记录自己学习flutter期间碰到的知识点或者埋坑的情况
+各个flutter界面的介绍
+1.interact_android主要是针对flutter和android间通信。对应的Android端代码为ReceiveMsgFlutterPlugin.class
 
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
