@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'interact_android.dart';
 import 'switchbutton.dart';
+import 'package:package_info/package_info.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: SwitchButton(),
+      home: Interact(),
     );
   }
 }
+
+
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -47,6 +52,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String verCode="1.0";
+
+  getPackageInfo() async{
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    print("info="+packageInfo.version);
+  }
+
 
   void _incrementCounter() {
     setState(() {
@@ -97,14 +109,14 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              'text$verCode',
               style: Theme.of(context).textTheme.display1,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: getPackageInfo,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

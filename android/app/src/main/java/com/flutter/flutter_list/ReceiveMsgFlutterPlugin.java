@@ -5,10 +5,15 @@ package com.flutter.flutter_list;
 import android.app.Activity;
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.pm.ComponentInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import io.flutter.plugin.common.BinaryMessenger;
@@ -55,6 +60,19 @@ public class ReceiveMsgFlutterPlugin implements MethodChannel.MethodCallHandler 
                     intent.putExtra("test",argu);
                     mActivity.startActivity(intent);
                     result.success("jump success");
+                    break;
+                case "package":
+                    Map<String,String> packageMap=new LinkedHashMap<>();
+                    PackageManager manager=mActivity.getPackageManager();
+                    try {
+                        PackageInfo info=manager.getPackageInfo(mActivity.getPackageName(),0);
+                        packageMap.put("versionCode",info.versionCode+"");
+                        packageMap.put("versionName",info.versionName);
+                        packageMap.put("packageName",info.packageName);
+                    } catch (PackageManager.NameNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    result.success(packageMap);
                     break;
             }
     }

@@ -11,7 +11,6 @@ class Interact extends StatefulWidget{
   _InteractState createState() {
     return _InteractState();
   }
-  
 }
 
 
@@ -48,6 +47,15 @@ class _InteractState extends State<Interact>{
     });
   }
 
+  _getPackageInfo() async{
+    await playform.invokeMethod("package").then((dynamic result){
+      String versionCode=result["versionCode"];
+      String versionName=result["versionName"];
+      String packageName=result["packageName"];
+      print(versionCode.toString()+","+versionName.toString()+","+packageName.toString());
+    });
+  }
+
   
   @override
   Widget build(BuildContext context) {
@@ -63,6 +71,7 @@ class _InteractState extends State<Interact>{
             RaisedButton(onPressed: _sendMSGtoToast,child: Text("点击调用Android toast")),
             RaisedButton(onPressed: _sendArgumtoAndroid,child: Text("点击向Android端发送数据"),),
             RaisedButton(onPressed: _sendArgumtAndJump,child: Text("点击发送数据并进行Android界面跳转"),),
+            RaisedButton(onPressed: _getPackageInfo,child: Text("获取版本号"),),
             Text("第一个回调信息：$result1"),
             Text("第二个回调信息：$result2"),
             Text("第三个回调信息：$result3"),
