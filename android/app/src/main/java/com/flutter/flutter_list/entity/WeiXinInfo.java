@@ -1,6 +1,8 @@
 package com.flutter.flutter_list.entity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WeiXinInfo {
 
@@ -13,15 +15,7 @@ public class WeiXinInfo {
     private String headimgurl;
     private List<String> privilege;
     private String unionid;
-    private String age;
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
 
     public void setOpenid(String openid) {
         this.openid = openid;
@@ -99,7 +93,19 @@ public class WeiXinInfo {
                 ", headimgurl='" + headimgurl + '\'' +
                 ", privilege=" + privilege +
                 ", unionid='" + unionid + '\'' +
-                ", age='" + age + '\'' +
                 '}';
     }
+
+    public Map<String,String> toMap(){
+        Map<String,String> userInfo =new HashMap<>();
+        userInfo.put("openid",openid);
+        userInfo.put("nickname",nickname);
+        userInfo.put("sex",sex+"");
+        userInfo.put("province",province);
+        userInfo.put("city",city);
+        userInfo.put("country",headimgurl);
+        userInfo.put("unionid",unionid);
+        return  userInfo;
+    }
+
 }

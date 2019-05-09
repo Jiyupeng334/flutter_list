@@ -64,7 +64,7 @@ public class WeChatManager {
             @Override
             public void dataCallback(WeiXinInfo obj) {
                 if (channelResult != null) {
-                    channelResult.success(obj.toString());
+                    channelResult.success(obj.toMap());
                     channelResult = null;
                 }
                 Log.i("ansen", "头像地址:" + obj.toString());
