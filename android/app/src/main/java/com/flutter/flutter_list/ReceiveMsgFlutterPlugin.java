@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;

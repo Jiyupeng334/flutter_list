@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
+import 'wechat_manager.dart';
 
 class WeChatLogin extends StatelessWidget{
 
@@ -12,13 +13,32 @@ class WeChatLogin extends StatelessWidget{
         centerTitle: true,
       ),
       body: Center(
-        child: InkWell(
-          onTap: (){
-            //点击进行微信登录
+        child: Row(
+          children: <Widget>[
+            InkWell(
+              onTap: (){
+                //点击进行微信登录
+                WeChatManager().login().then((value){
 
-          },
-          child: Text("点击进行微信登录"),
-        ),
+                });
+              },
+              child: Text("点击进行微信登录"),
+            ),
+            InkWell(
+              onTap: (){
+                //点击进行微信图片分享
+                WeChatManager().shareImage("url", "title", "desc").then((value){
+
+                });;
+                //点击进行微信网址分享
+                //WeChatManager().shareUrl("url", "title", "desc").then((value){
+                //
+                //                });;
+              },
+              child: Text("点击进行微信分享"),
+            )
+          ],
+        )
       ),
     );
   }
