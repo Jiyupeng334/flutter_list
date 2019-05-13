@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
-import 'interact_android.dart';
-import 'switchbutton.dart';
-import 'wechat_login.dart';
+import 'interact_android.dart';//简单的测试沟通flutter和native端
+import 'switchbutton.dart';//开关
+import 'state_change_test.dart';//三种状态改变下，加载不同的界面
+import 'wechat_login.dart';//测试微信登录和分享
+import 'anim_tween.dart';//测试伸缩动画
+import 'anim_together.dart';//测试组合动画
+import 'error_test.dart';//测试组合动画
+
+void main() {
+  //全局的错误拦截统计处，可以点击FlutterError.onError进入源码查看description查看
+  //FlutterError.onError = (FlutterErrorDetails details) { reportError(details);};
+  runApp(MyApp());}
+
+void reportError(FlutterErrorDetails details) {
+    print("one");
+    FlutterError.dumpErrorToConsole(details);
+}
 
 
-void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
@@ -25,7 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: WeChatLogin(),
+      home: ErrorPage(),
     );
   }
 }

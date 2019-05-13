@@ -28,8 +28,8 @@ public class MainActivity extends FlutterActivity {
     super.onCreate(savedInstanceState);
     GeneratedPluginRegistrant.registerWith(this);
     //注册接收flutter调用的Android插件类。
-    initWeChat();
-    registFlutterPlugin();
+    //initWeChat();
+    //registFlutterPlugin();
   }
 
   private void initWeChat() {
@@ -46,9 +46,5 @@ public class MainActivity extends FlutterActivity {
   }
 
 
-  @Override
-  protected void onResume() {
-    super.onResume();
-  }
 
 }
