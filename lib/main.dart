@@ -5,18 +5,27 @@ import 'state_change_test.dart';//三种状态改变下，加载不同的界面
 import 'wechat_login.dart';//测试微信登录和分享
 import 'anim_tween.dart';//测试伸缩动画
 import 'anim_together.dart';//测试组合动画
-import 'error_test.dart';//测试组合动画
+import 'error_test.dart';//测试全局错误拦截
+import 'list_view.dart';//测试listview的刷新性能优化问题
+import 'webview_test.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+import 'dp_test.dart';
+import 'dart:async';
+import 'firebase_message.dart';
+import 'package:sharesdk/sharesdk.dart';
+
 
 void main() {
-  //全局的错误拦截统计处，可以点击FlutterError.onError进入源码查看description查看
-  //FlutterError.onError = (FlutterErrorDetails details) { reportError(details);};
-  runApp(MyApp());}
-
-void reportError(FlutterErrorDetails details) {
-    print("one");
-    FlutterError.dumpErrorToConsole(details);
+  FlutterError.onError=(FlutterErrorDetails e){
+    FlutterError.dumpErrorToConsole(e);
+  };
+  ShareSDKRegister register=ShareSDKRegister();
+  register.setupFacebook("1272289462949420", "fb1272289462949420", "shareSDK");
+  ShareSDK.regist(register);
+  FirebaseMessaging firebaseMessaging=FirebaseMessaging();
+  runApp(MyApp());
 }
-
 
 
 class MyApp extends StatelessWidget {
@@ -38,7 +47,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ErrorPage(),
+      home: DpTest(),
     );
   }
 }
@@ -67,8 +76,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String verCode="1.0";
+  final FirebaseMessaging  _firebaseMessaging = FirebaseMessaging();
 
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _firebaseMessaging.configure(
+      onResume: (Map<String, dynamic> message) {
+        print('on message $message');
+      },
+      onLaunch: (Map<String, dynamic> message) {
+        print('on message $message');
+      },
+      onMessage: (Map<String, dynamic> message) {
+        print('on message $message');
+      }
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.getToken().then((token){
+      print("token="+token.toString());
+    });
+    _firebaseMessaging.subscribeToTopic("com.flutter.list");
+  }
 
   void _incrementCounter() {
     setState(() {

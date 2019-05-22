@@ -18,10 +18,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name=".MyApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="flutter_list"
-        tools:replace="android:label">
+        tools:replace="android:label,android:name">
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -42,16 +42,31 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@android:color/black" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+
+
         <activity
             android:name=".TestActivity"
             android:launchMode="singleTop" />
         <activity android:name=".wxapi.WXEntryActivity"
             android:launchMode="singleTop"
             android:exported="true"/>
+
+        <service android:name="com.gimbal.internal.push.FcmListenerService"
+            android:enabled="true"
+            tools:replace="android:enabled" />
+
     </application>
 
 </manifest>

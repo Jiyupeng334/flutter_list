@@ -9,9 +9,6 @@ class ErrorPage extends StatefulWidget{
     // TODO: implement createState
     return _ErrorSate();
   }
-
-
-
 }
 
 class _ErrorSate extends State<ErrorPage>{
@@ -41,31 +38,35 @@ class _ErrorSate extends State<ErrorPage>{
 
   Widget getBody(){
     Widget contant=null;
-    contant=Container(
-        margin: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-        height: 200,
-        width: 200,
-        color: Colors.black,
-        child:new Row(
-          children: <Widget>[
-            new Container(width: 50,height: 50,color: Colors.red,child: new InkWell(
-              child: Text("click me"),
-              onTap: (){
-                throw FormatException("test error");
-              },
-            ),),
-            new Container(width: 50,height: 50,color: Colors.yellow,child: InkWell(
-              onTap:(){
-                throw Exception;
-              },
-              child: Text(test),
-            ),),
-            new Container(width: 50,height: 50,color: Colors.green,),
-          ],
-        )
+    contant= Container(
+    margin: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+    height: 80,
+    width: 80,
+    color: Colors.black,
+    child:new Row(
+    children: <Widget>[
+    new Container(width: 50,height: 50,color: Colors.red,child: new InkWell(
+    child: Text("click me"),
+    onTap: (){
+      crachApp();
+    },
+    ),),
+    ],
+    )
     );
 
     return  contant;
+  }
+
+
+  void crachApp(){
+    List app=List(4);
+    app.add(1);
+    app.add(2);
+    app.add(3);
+    app.add(4);
+    int a=app[5];
+    int c=app[6];
   }
 
 }

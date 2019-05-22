@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.flutter.flutter_list"
+        applicationId "com.insomniac.festivalapp"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
@@ -61,4 +61,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     api 'com.ansen.http:okhttpencapsulation:1.0.1'
+    implementation 'com.gimbal.android.v4:gimbal-sdk:4.0.1'
+    implementation 'com.gimbal.android.v4:gimbal-slf4j-impl:4.0.1'
+    implementation 'com.google.android.gms:play-services-ads-identifier:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

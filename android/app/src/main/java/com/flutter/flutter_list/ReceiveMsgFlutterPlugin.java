@@ -9,10 +9,10 @@ import android.content.pm.ComponentInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -27,15 +27,15 @@ public class ReceiveMsgFlutterPlugin implements MethodChannel.MethodCallHandler 
 
     private Activity mActivity;
     //flutter中会将这个CHANNEL以及对应的methodChannel加载的map中，CHANNEL为key，所以要保持和flutter的一致，且与别的CHANNEL区别开，避免被覆盖。
-    public final static String CHANNEL="com.flutter.list/plugin";
+    public final static String CHANNEL = "com.flutter.list/plugin";
 
-    private ReceiveMsgFlutterPlugin(Activity activity){
-        mActivity=activity;
+    private ReceiveMsgFlutterPlugin(Activity activity) {
+        mActivity = activity;
     }
 
-    public static void registReceiveMsgPlugin(PluginRegistry.Registrar registrar){
-        MethodChannel methodChannel=new MethodChannel(registrar.messenger(),CHANNEL);
-        ReceiveMsgFlutterPlugin plugin=new ReceiveMsgFlutterPlugin(registrar.activity());
+    public static void registReceiveMsgPlugin(PluginRegistry.Registrar registrar) {
+        MethodChannel methodChannel = new MethodChannel(registrar.messenger(), CHANNEL);
+        ReceiveMsgFlutterPlugin plugin = new ReceiveMsgFlutterPlugin(registrar.activity());
         methodChannel.setMethodCallHandler(plugin);
     }
 
@@ -76,6 +76,13 @@ public class ReceiveMsgFlutterPlugin implements MethodChannel.MethodCallHandler 
                     }
                     result.success(packageMap);
                     break;
+                case "loadURL":
+                    Uri uri = Uri.parse(methodCall.arguments.toString());
+                    Intent uriIntent = new Intent(Intent.ACTION_VIEW, uri);
+                    mActivity.startActivity(uriIntent);
+                    result.success("success");
+                    break;
             }
+
     }
 }

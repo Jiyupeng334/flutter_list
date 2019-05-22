@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'error_test.dart';
 //此文件为flutter与android交互代码
 
  const  String CHANNEL="com.flutter.list/plugin";//定义的通道
@@ -55,6 +56,15 @@ class _InteractState extends State<Interact>{
       print(versionCode.toString()+","+versionName.toString()+","+packageName.toString());
     });
   }
+  _loadUrl() async{
+    String result =await playform.invokeMethod("loadURL","https://tinderevents.onelink.me/cy2U/19da1010");
+    print("result="+result);
+  }
+
+  void _router(){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> new ErrorPage()));
+  }
+
 
   
   @override
@@ -72,9 +82,8 @@ class _InteractState extends State<Interact>{
             RaisedButton(onPressed: _sendArgumtoAndroid,child: Text("点击向Android端发送数据"),),
             RaisedButton(onPressed: _sendArgumtAndJump,child: Text("点击发送数据并进行Android界面跳转"),),
             RaisedButton(onPressed: _getPackageInfo,child: Text("获取版本号"),),
-            Text("第一个回调信息：$result1"),
-            Text("第二个回调信息：$result2"),
-            Text("第三个回调信息：$result3"),
+            RaisedButton(onPressed: _loadUrl,child: Text("跳转浏览器"),),
+            RaisedButton(onPressed: _router,child: Text("跳转界面"),)
           ],
         ),
       )

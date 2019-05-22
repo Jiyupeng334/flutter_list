@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "967338030271",
+    "firebase_url": "https://flutterlist.firebaseio.com",
+    "project_id": "flutterlist",
+    "storage_bucket": "flutterlist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967338030271:android:670463c8831a9528",
+        "android_client_info": {
+          "package_name": "com.insomniac.festivalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967338030271-94u8as0b9nlv5udg0pngc0gaar84r6ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7X2mPDEzOOy07RuGiB1ob9BkICCNaIF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967338030271-94u8as0b9nlv5udg0pngc0gaar84r6ec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
